@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style></style>
+  
+  <meta name="description" content="A diffusion transformer model designed for generating videos from textual inputs">
+  <meta name="keywords" content="Text to Video, 3D Variational Autoencoder, window attention">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Text to video</title>
+
+
+
+  <link href="./Text_to_video/css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./Text_to_video/bulma.min.css">
+  <link rel="stylesheet" href="./Text_to_video/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./Text_to_video/bulma-slider.min.css">
+  <link rel="stylesheet" href="./Text_to_video/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./Text_to_video/academicons.min.css">
+  <link rel="stylesheet" href="./Text_to_video/index.css">
+  <link rel="stylesheet" href="./Text_to_video/leaderboard.css">
+
+  <script type="text/javascript" src="./Text_to_video/sort-table.js" defer=""></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer="" src="./Text_to_video/fontawesome.all.min.js"></script>
+  <script src="./Text_to_video/bulma-carousel.min.js"></script>
+  <script src="./Text_to_video/bulma-slider.min.js"></script>
+  <script src="./Text_to_video/explorer-index.js"></script>
+  <script src="./Text_to_video/question_card.js"></script>
+
+  <script src="./Text_to_video/leaderboard_testmini.js"></script>  
+  <script src="./Text_to_video/output_folders.js" defer=""></script>
+  <script src="./Text_to_video/model_scores.js" defer=""></script>
+
+  <script src="./Text_to_video/data_public.js" defer=""></script>
+
+  <style>
+      .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin-top: -20px;
+        }
+    .node {
+      fill: #f8f1e4;
+      stroke: #000;
+      stroke-width: 1;
+      rx: 10;
+      ry: 10;
+    }
+    .node text {
+      font-size: 14px;
+      text-anchor: middle;
+    }
+    .link {
+      fill: none;
+      stroke: #000;
+      stroke-width: 2;
+    }
+    .badge {
+      font-size: 12px;
+    }
+  </style>
+
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold" style="display: inline-block; margin-right: 200px;">
+            <span style="vertical-align: middle">VidGen</span>
+            </h1>
+          <h2 class="subtitle is-3 publication-subtitle" style="display: inline-block; margin-left: 210px;">     
+            A diffusion transformer model designed for generating videos
+          </h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href=""> </a><sup style="color:#ed4b82;">1,</sup><sup style="color:#6fbf73;"></sup>,</span>
+            <span class="author-block">
+              <a href=""> </a><sup style="color:#ed4b82;">1,</sup><sup style="color:#6fbf73;"></sup>,</span>
+            <span class="author-block">
+              <a href=""> </a><sup style="color:#6fbf73;">1</sup>,
+            </span>
+            <span class="author-block">
+              <a href=""> </a><sup style="color:#9400D3">1,</sup><sup style="color:#6fbf73;"></sup>,</span>
+            
+            <span class="author-block">
+              <a href=""> </a><sup style="color:#ffac33">1,</sup><sup style="color:#6fbf73;"></sup>,</span>
+            
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block" style="margin-right: 15px;"><sup style="color:#6fbf73;">1</sup>Fudan University,</span>
+            <span class="author-block" style="margin-right: 15px;"><sup style="color:#ed4b82">2</sup>ShangHai Academy of AI for Science</span>
+            <!-- <span class="paper-block"><b style="color:#f41c1c">ICLR 2024 Oral</b> (85 in 7304, 1.2%)</span> -->
+          </div>
+        
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Training Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- <i class="far fa-images"></i> -->
+                      <p style="font-size:18px">🤗</p>
+                      <!-- 🔗 -->
+                  </span>
+                  <span>Checkpoints</span>
+                </a>
+              </span> 
+              <!-- Visualization Link. -->
+              <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- <i class="far fa-images"></i> -->
+                      <p style="font-size:18px">🤗</p>
+                      <!-- 🔗 -->
+                  </span>
+                  <span>LLaVA-OneVision Data</span>
+                </a>
+              </span> 
+              <!-- Leaderboard Link. -->
+              <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <p style="font-size:18px">🎨</p>
+                  </span>
+                  <span>Live Demo</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+            <p>
+          We introduce <b>VidGen</b>, a diffusion transformer model designed for generating videos from textual inputs. To adeptly handle the intricacies of video data, we incorporate 3D Variational Autoencoder (VAE) that effectively compresses video across spatial and temporal dimensions. Additionally, we enhance the diffusion transformer by integrating a window-based attention mechanism, specifically tailored for video generation tasks. Unfortunately, training text-to-video generative model from scratch demands significant computational resources and data. To overcome these obstacles, we implement a multi-stage training pipeline that optimizes training efficiency and effectiveness. Employing progressive training methodologies, VidGen is proficient at crafting coherent, long-duration videos with prominent motion dynamics. Model weights for the 3D Causal VAE and VidGen are publicly accessible, promoting further research and application in the field.
+            </p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="columns is-centered" style="margin-bottom: 90px;">
+      <div class="content has-text-centered">
+        <img src="./Text_to_video/framework.png" alt="data-overview" style="max-width: 55%;">
+        <p> 
+          <b>Figure 1.VidGen Network Architecture.</b> <br>
+        </p> 
+      </div>
+    </div>
+
+    <!--/ Abstract. -->
+
+</section>
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+            <p>
+              we introduce the VidGen model. As depicted in Figure 1, we employ a 3D causal Variational Autoencoder (VAE) to encode the image and video data into a latent space. Subsequently, these latent representations are transformed into a sequence of patches, which we refer to as "patchification." Concurrently, the text input is converted into embeddings using the T5 model. The next step involves reversing the patchification process, termed "unpatchification," to restore the latent representations to their original input. These are then decoded through a 3D causal VAE decoder to reconstruct the video. 
+
+            </p>
+            
+            <p>
+              Given the limitations of our training resources and data availability, we implemented a multi-stage training strategy to accelerate the training speed. Specifically, we decomposed the training process into four stages: the semantic learning stage, the temporal learning stage, the multi-resolution and multi-duration mixed training stage, and the high-quality fine-tuning stage.
+            
+            </p>
+            <p>
+              The quality of the training data sets the upper bound of the model's performance, and cleaning video data presents significant challenges. Current mainstream data cleaning processes rely heavily on extensive manual annotation, followed by training classifiers based on the annotated data to filter the dataset. To address this, we designed an automated data cleaning pipeline that includes video captioning and caption filtering. Through this process, we filtered 10 million data for model training.
+            
+            </p>
+
+        </div>
+
+    
+
+      </div>
+    </div>
+  </div>
+
+
+      
+    
+    <!--/ Abstract. -->
+
+</section>
+
+<section class="section">
+    <div class="container" style="margin-bottom: 2vh;">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Open-source Release</h2>
+          <div class="content has-text-justified">
+            <ul>
+                <p>
+                  We open-source the VidGen to facilitate future development of video generation in the community. Code, data, model will be made publicly available.
+                </p>
+                <li> <p style="font-size:18px"><i class="fab fa-github"></i>  <a href=""> Training Code</a>: Our released training code</p></li>
+                <li><p style="font-size:18px">🤗 <a href=""> Checkpoints</a>: Access pre-trained model checkpoints </p></li>
+                <li><p style="font-size:18px">🤗 <a href="">Data</a>: VidGen-1M</p></li>
+                <li><p style="font-size:18px">🎨 <a href="">Live Demo</a>: Try it out yourself!</p></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+        <p>
+          To evaluate the effectiveness of our generative model, we utilized GPT-4 to generate a series of prompts for testing.
+          Experimental results demonstrate that VidGen can generate videos featuring multiple characters, specific types of motion, and accurate details of subjects and backgrounds across various scenes. The model not only comprehends the semantics of the prompts but also produces temporally consistent videos. Notably, VidGen is capable of generating videos with large motions.
+          Furthermore, the model exhibits a deep understanding of language, enabling it to accurately interpret prompts and generate compelling characters that express vibrant emotions. VidGen can also create multiple shots within a single generated video while consistently preserving characters and visual styles.
+      </p>
+        <div id="results-carousel" class="carousel results-carousel">
+
+      </div>
+    </div>
+</div>
+</div></div></section>
+
+
+</body></html>
+
+<!--a class="u-url" href="https://llava-vl.github.io/blog/2024-08-05-llava-onevision/" hidden=""></a>
+
+
+
+
+
