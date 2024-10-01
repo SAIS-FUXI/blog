@@ -5,7 +5,7 @@
   <meta name="description" content="A diffusion transformer model designed for generating videos from textual inputs">
   <meta name="keywords" content="Text to Video, 3D Variational Autoencoder, window attention">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> VidGen: A Diffusion Transformer Model for High-Fidelity Text-to-Video Generation</title>
+  <title> HawkT2V: A Diffusion Transformer Model for High-Fidelity Text-to-Video Generation</title>
 
 
 
@@ -83,7 +83,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title is-bold" style="display: inline-block; margin-right: 0px;">
-            <span style="vertical-align: middle">VidGen</span>
+            <span style="vertical-align: middle">HawkT2V</span>
             </h1>
           <h2 class="subtitle is-3 publication-subtitle" style="display: inline-block; margin-left: 0px;">   
             A Diffusion Transformer Model for High-Fidelity Text-to-Video Generation  
@@ -123,7 +123,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://github.com/SAIS-FUXI/HawkT2V" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
@@ -132,7 +132,7 @@
               </span>
               <!-- Dataset Link. -->
               <span class="link-block">
-                <a href="" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://huggingface.co/Fudan-FUXI/HawkT2V_1.0_3B" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <!-- <i class="far fa-images"></i> -->
                       <p style="font-size:18px">🤗</p>
@@ -143,7 +143,7 @@
               </span> 
               <!-- Visualization Link. -->
               <span class="link-block">
-                <a href="" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://huggingface.co/datasets/Fudan-FUXI/VIDGEN-1M" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <!-- <i class="far fa-images"></i> -->
                       <p style="font-size:18px">🤗</p>
@@ -153,14 +153,6 @@
                 </a>
               </span> 
               <!-- Leaderboard Link. -->
-              <span class="link-block">
-                <a href="" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <p style="font-size:18px">🎨</p>
-                  </span>
-                  <span>Live Demo</span>
-                </a>
-              </span>
             </div>
 
           </div>
@@ -180,7 +172,7 @@
         <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
             <p>
-          We introduce <b>VidGen</b>, a diffusion transformer model designed for generating videos from textual inputs. To adeptly handle the intricacies of video data, we incorporate 3D Variational Autoencoder (VAE) that effectively compresses video across spatial and temporal dimensions. Additionally, we enhance the diffusion transformer by integrating a window-based attention mechanism, specifically tailored for video generation tasks. Unfortunately, training text-to-video generative model from scratch demands significant computational resources and data. To overcome these obstacles, we implement a multi-stage training pipeline that optimizes training efficiency and effectiveness. Employing progressive training methodologies, VidGen is proficient at crafting coherent, long-duration videos with prominent motion dynamics. Model weights for the 3D Causal VAE and VidGen are publicly accessible, promoting further research and application in the field.
+          We introduce <b>HawkT2V</b>, a diffusion transformer model designed for generating videos from textual inputs. To adeptly handle the intricacies of video data, we incorporate 3D Variational Autoencoder (VAE) that effectively compresses video across spatial and temporal dimensions. Additionally, we enhance the diffusion transformer by integrating a window-based attention mechanism, specifically tailored for video generation tasks. Unfortunately, training text-to-video generative model from scratch demands significant computational resources and data. To overcome these obstacles, we implement a multi-stage training pipeline that optimizes training efficiency and effectiveness. Employing progressive training methodologies, HawkT2V is proficient at crafting coherent, long-duration videos with prominent motion dynamics. Model weights for the 3D Causal VAE and HawkT2V are publicly accessible, promoting further research and application in the field.
             </p>
 
         </div>
@@ -193,7 +185,7 @@
       <div class="content has-text-centered">
         <img src="./Text_to_video/framework.png" alt="data-overview" style="max-width: 55%;">
         <p> 
-          <b>Figure 1.VidGen Network Architecture.</b> <br>
+          <b>Figure 1.HawkT2V Network Architecture.</b> <br>
         </p> 
       </div>
     </div>
@@ -210,7 +202,7 @@
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-justified">
             <p>
-              we introduce the VidGen model. As depicted in Figure 1, we employ a 3D causal Variational Autoencoder (VAE) to encode the image and video data into a latent space. Subsequently, these latent representations are transformed into a sequence of patches, which we refer to as "patchification." Concurrently, the text input is converted into embeddings using the T5 model. The next step involves reversing the patchification process, termed "unpatchification," to restore the latent representations to their original input. These are then decoded through a 3D causal VAE decoder to reconstruct the video. 
+              we introduce the HawkT2V model. As depicted in Figure 1, we employ a 3D causal Variational Autoencoder (VAE) to encode the image and video data into a latent space. Subsequently, these latent representations are transformed into a sequence of patches, which we refer to as "patchification." Concurrently, the text input is converted into embeddings using the T5 model. The next step involves reversing the patchification process, termed "unpatchification," to restore the latent representations to their original input. These are then decoded through a 3D causal VAE decoder to reconstruct the video. 
 
             </p>
             
@@ -245,12 +237,11 @@
           <div class="content has-text-justified">
             <ul>
                 <p>
-                  We open-source the VidGen to facilitate future development of video generation in the community. Code, data, model will be made publicly available.
+                  We open-source the HawkT2V to facilitate future development of video generation in the community. Code, data, model will be made publicly available.
                 </p>
-                <li> <p style="font-size:18px"><i class="fab fa-github"></i>  <a href=""> Training Code</a>: Our released training code</p></li>
-                <li><p style="font-size:18px">🤗 <a href=""> Checkpoints</a>: Access pre-trained model checkpoints </p></li>
-                <li><p style="font-size:18px">🤗 <a href="">Data</a>: VidGen-1M</p></li>
-                <li><p style="font-size:18px">🎨 <a href="">Live Demo</a>: Try it out yourself!</p></li>
+                <li> <p style="font-size:18px"><i class="fab fa-github"></i>  <a href="https://github.com/SAIS-FUXI/HawkT2V"> Training Code</a>: Our released training code</p></li>
+                <li><p style="font-size:18px">🤗 <a href="https://huggingface.co/Fudan-FUXI/HawkT2V_1.0_3B"> Checkpoints</a>: Access pre-trained model checkpoints </p></li>
+                <li><p style="font-size:18px">🤗 <a href="https://huggingface.co/datasets/Fudan-FUXI/VIDGEN-1M">Data</a>: VidGen-1M</p></li>
             </ul>
           </div>
         </div>
@@ -269,8 +260,8 @@
         <div class="content has-text-justified">
         <p>
           To evaluate the effectiveness of our generative model, we utilized GPT-4 to generate a series of prompts for testing.
-          Experimental results demonstrate that VidGen can generate videos featuring multiple characters, specific types of motion, and accurate details of subjects and backgrounds across various scenes. The model not only comprehends the semantics of the prompts but also produces temporally consistent videos. Notably, VidGen is capable of generating videos with large motions.
-          Furthermore, the model exhibits a deep understanding of language, enabling it to accurately interpret prompts and generate compelling characters that express vibrant emotions. VidGen can also create multiple shots within a single generated video while consistently preserving characters and visual styles.
+          Experimental results demonstrate that HawkT2V can generate videos featuring multiple characters, specific types of motion, and accurate details of subjects and backgrounds across various scenes. The model not only comprehends the semantics of the prompts but also produces temporally consistent videos. Notably, HawkT2V is capable of generating videos with large motions.
+          Furthermore, the model exhibits a deep understanding of language, enabling it to accurately interpret prompts and generate compelling characters that express vibrant emotions. HawkT2V can also create multiple shots within a single generated video while consistently preserving characters and visual styles.
       </p>
 
       <!-- Video Grid -->
@@ -310,6 +301,42 @@
           </video>
           <p>Standing atop a hill overlooking a battlefield, a gorgeous female samurai stares into the distance. She turns her head sharply as if sensing someone's presence. She blinks twice, then speaks a command with authority. The wind blows through her hair, and the diffused soft lighting accentuates the textures of her attire in high detail.</p>
         </div>
+      
+        <div class="columns is-multiline">
+          <!-- Video 5 -->
+          <div class="column is-half">
+            <video controls style="width: 100%;">
+              <source src="./Text_to_video/videos_4s/the_video_shows_a_bunny_walking_confidently,_high_ornamented_light_armor,_fluffy_fur,_foggy,_wet,_stormy,_70mm,_cinemati1727604783_0_webv_imageio.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p>the video shows a bunny walking confidently, high ornamented light armor, fluffy fur, foggy, wet, stormy, 70mm, cinematic, highly detailed</p>
+          </div>
+  
+          <!-- Video 6 -->
+          <div class="column is-half">
+            <video controls style="width: 100%;">
+              <source src="./Text_to_video/videos_4s/A_young_woman_with_sun-kissed_blonde_wavy_hair_and_light_hazel_eyes_strolls_gracefully_through_a_sunlit_meadow,_her_eyes1727604783_0_webv_imageio.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p>A young woman with sun-kissed blonde wavy hair and light hazel eyes strolls gracefully through a sunlit meadow, her eyes open and gazing thoughtfully into the distance. She has a clear complexion with a scattering of freckles across her nose and cheeks. As she walks, her hair sways gently in the breeze. She continues to gaze thoughtfully before turning her contemplative eyes towards the viewer, her open eyes meeting theirs. She smiles softly and lifts her hand to adjust an elegant white or silver drop earring. Dressed in a simple black sleeveless top, she moves naturally against a soft, natural outdoor background. The lighting is warm and natural, highlighting her features with a serene ambiance as the sunlight filters through the trees.</p>
+          </div>
+        
+          <div class="column is-half">
+            <video controls style="width: 100%;">
+              <source src="./Text_to_video/videos_4s/009-a_2_seconds_video_of_a_cat_blinking_eyes_several_times,_orange_tabby,_renaissance_costume,_ruff_collar,_golden_robe,stud1727664332_0_webv_imageio.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p>a cat blinking eyes several times, orange tabby, renaissance costume, ruff collar, golden robe,studio portrait,noble demeanor,detailed embroidery,ornate jewelry,dark background,regal pose,sharp focus,historical fashion,rich textures</p>
+          </div>
+  
+          <!-- Video 2 -->
+          <div class="column is-half">
+            <video controls style="width: 100%;">
+              <source src="./Text_to_video/videos_4s/023-action-packed_video_of_an_off-road_vehicle_tackling_rough_terrain._Capture_the_vehicle_in_various_environments_like_mud,1727664340_0_webv_imageio.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p>action-packed video of an off-road vehicle tackling rough terrain. Capture the vehicle in various environments like mud, rocks, and desert. Use a combination of aerial drone shots and ground-level camera work to showcase the vehicle's capabilities. Include exciting music and the sounds of the engine and tires.</p>
+          </div>
       <!-- End of Video Grid -->
       
       <!-- 继续添加更多视频行 -->
@@ -577,9 +604,3 @@
 
 
 </body></html>
-
-
-
-
-
-
